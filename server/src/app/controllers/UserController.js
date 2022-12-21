@@ -156,26 +156,11 @@ const UserController = {
     // [GET] /api/users/starts
     // @desc Get all user with created at
     starts: async function (req, res) {
-        const month = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December',
-        ];
-
         try {
             const data = await User.aggregate([
                 {
                     $project: {
-                        month: { $year: '$createdAt' },
+                        month: { $month: '$createdAt' },
                     },
                 },
                 {

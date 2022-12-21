@@ -6,7 +6,7 @@ mongoose.plugin(slug);
 
 const MovieSchema = new Schema(
     {
-        title: {type: String, required: true},
+        title: {type: String, required: true, unique: true},
         description: {type: String},
         overview: {type: String},
         genre: {type: Array},
@@ -18,9 +18,10 @@ const MovieSchema = new Schema(
         language: {type: String},
         vote_average: {type: Number},
         vote_count: {type: Number},
-        adult: {type: Boolean, default: false},
+        isSeries: {type: Boolean, default: false},
         backdrop: {type: String},
-        slug: {type: String, slug: 'title', unique: true}
+        slug: {type: String, slug: 'title', unique: true},
+        size: {type: Number, default: 1},
     },
     {
         timestamps: true,
